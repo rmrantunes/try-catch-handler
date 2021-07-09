@@ -8,23 +8,22 @@ Catch unhandled errors with error handler functions.
 
 The fist element of the returned array will catch all the unhandled async errors.
 
-```js
+```ts
 import { asyncTryCatch } from "try-catch-handler";
 import axios from "axios";
 
-async function getUserError(login: string) {
-  return await asyncTryCatch(async () => {
-    const { data } = await axios.get(`https://api.github.com/users/${login}`);
-    // GitHub Not Found Response:
-    if (data.message) {
-      // throw it as an Error
-      throw new Error("Not Found");
-    }
-    return data;
-  });
-}
+const [error, user] = await asyncTryCatch(async () => {
+  const USERNAME = "__not-a-user";
 
-const [error, user] = await getUserError("__not-a-user");
+  const { data } = await axios.get(`https://api.github.com/users/${USERNAME}`);
+  // GitHub Not Found Response:
+  if (data.message) {
+    // throw it as an Error
+    throw new Error("Not Found");
+  }
+  return data;
+});
+
 console.log(error); // Not found
 console.log(user); // null
 ```
@@ -33,21 +32,20 @@ console.log(user); // null
 
 The fulfilled result will be the second element of the returned array.
 
-```js
+```ts
 import { asyncTryCatch } from "try-catch-handler";
 import axios from "axios";
 
-async function getUser(login: string) {
-  return await asyncTryCatch(async () => {
-    const { data } = await axios.get(`https://api.github.com/users/${login}`);
-    if (data.message) {
-      throw new Error("Not Found");
-    }
-    return data;
-  });
-}
+const [error, user] = await asyncTryCatch(async () => {
+  const USERNAME = "rmrantunes";
 
-const [error, user] = await getUser("rmrantunes");
+  const { data } = await axios.get(`https://api.github.com/users/${USERNAME}`);
+  if (data.message) {
+    throw new Error("Not Found");
+  }
+  return data;
+});
+
 console.log(error); // null
-console.log(user.login); // rmrantunes
+console.log(user?.login); // rmrantunes
 ```
