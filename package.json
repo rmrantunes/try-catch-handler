@@ -8,6 +8,15 @@
     "test": "jest",
     "build": "tsc"
   },
+  "keywords": [
+    "error handling",
+    "try catch",
+    "async"
+  ],
+  "author": {
+    "name": "Rafael Antunes",
+    "url": "https://github.com/rmrantunes"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.0",
