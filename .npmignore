@@ -3,3 +3,4 @@ test/
 tsconfig.json
 .gitignore
 jest.config.js
+index.ts
