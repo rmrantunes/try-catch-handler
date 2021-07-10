@@ -4,9 +4,15 @@ Catch unhandled errors with error handler functions.
 
 ## Installation
 
+**Yarn:**
+
 ```
   yarn add try-catch-handler
-  // or
+```
+
+**NPM:**
+
+```
   npm i try-catch-handler
 ```
 
